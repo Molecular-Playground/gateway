@@ -5,7 +5,6 @@ var request = require('request');
 var MS_LOGIN_URL = "http://mslogin:3001";
 
 router.post('/', function(req, res, next) {
-	console.log("gateway - POST: /");
 	var reqParams = {
 		url: MS_LOGIN_URL,
 		method:'POST',
