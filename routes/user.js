@@ -5,7 +5,7 @@ var request = require('request');
 var MS_USER_URL = "http://msusers:3000";
 
 router.get('/', function(req, res, next) {
-	console.log("gateway - get all users");
+	console.log("gateway - GET: /");
 	var reqParams = {
 		url: MS_USER_URL
 	}
@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:username', function(req, res, next) {
-	console.log("gateway - get a user");
+	console.log("gateway - GET /:username");
 	var reqParams = {
 		url: MS_USER_URL + '/' + req.params.username
 	}
@@ -37,7 +37,7 @@ router.get('/:username', function(req, res, next) {
 });
 
 router.put('/', function(req, res, next) {
-	console.log("gateway - create a user");
+	console.log("gateway - PUT: /");
 	var reqParams = {
 		url: MS_USER_URL,
 		method: 'PUT',
@@ -56,7 +56,7 @@ router.put('/', function(req, res, next) {
 });
 
 router.patch('/', function(req, res, next) {
-	console.log("gateway - validate user");
+	console.log("gateway - PATCH: /");
 	var reqParams = {
 		url: MS_USER_URL + '/validate',
 		method: 'PATCH',
@@ -77,7 +77,7 @@ router.patch('/', function(req, res, next) {
 });
 
 router.post('/:username', function(req, res, next) {
-	console.log("gateway - update a user");
+	console.log("gateway - POST: /:username");
 	var reqParams = {
 		url: MS_USER_URL + '/' + req.params.username,
 		method:'POST'
@@ -93,7 +93,7 @@ router.post('/:username', function(req, res, next) {
 });
 
 router.delete('/:username', function(req, res, next) {
-	console.log("gateway - delete a user");
+	console.log("gateway - DELETE: /:username");
 	var reqParams = {
 		url: MS_USER_URL + '/' + req.params.username,
 		method:'DELETE'
