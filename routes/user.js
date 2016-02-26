@@ -68,21 +68,6 @@ router.patch('/validate', function(req, res, next) {
 	});
 });
 
-router.post('/:username', function(req, res, next) {
-	var reqParams = {
-		url: MS_USER_URL + '/' + req.params.username,
-		method:'POST'
-	}
-	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
-	});
-});
-
 router.delete('/:username', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL + '/' + req.params.username,
