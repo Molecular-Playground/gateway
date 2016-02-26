@@ -1,8 +1,25 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 
-router.get('/', function(req, res, next) {
-  res.send("hello from login");
+var MS_LOGIN_URL = "http://mslogin:3001";
+
+router.post('/', function(req, res, next) {
+	console.log("gateway - POST: /");
+	var reqParams = {
+		url: MS_LOGIN_URL,
+		method:'POST',
+		json: true,
+		body: req.body
+	}
+	request(reqParams, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			res.send(body);
+		}
+		else {
+  			res.send(body);
+		}
+	});
 });
 
 module.exports = router;
