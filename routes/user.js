@@ -49,7 +49,7 @@ router.put('/', function(req, res, next) {
 	});
 });
 
-router.patch('/', function(req, res, next) {
+router.patch('/validate', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL + '/validate',
 		method: 'PATCH',
