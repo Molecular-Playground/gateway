@@ -19,10 +19,10 @@ app.use(cookieParser());
 
 //validate JWTs here
 app.use(function(req,res,next) {
-  //TODO are cookies where the token is?
-  var token = req.cookies.token;
+  //TODO is headers correct location for token?
+  var token = req.headers.token;
   if(token){
-    nJwt.verify(token,signingKey,function(err,ver){
+    njwt.verify(token,signingKey,function(err,ver){
       if(err){
         req.expired = true;
         next();
