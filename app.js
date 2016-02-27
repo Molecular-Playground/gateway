@@ -21,18 +21,19 @@ app.use(cookieParser());
 app.use(function(req,res,next) {
   //TODO are cookies where the token is?
   var token = req.cookies.token;
-  nJwt.verify(token,signingKey,function(err,ver){
-    if(err){
-      next(err);
-    }else{
-      if(ver.isExpired()){
+  if(token){
+    nJwt.verify(token,signingKey,function(err,ver){
+      if(err){
         req.expired = true;
-      } else{
+        next();
+      }else{
         req.user = ver.body;
+        next();
       }
-      next();
-    }
-  });
+    });
+  } else{
+    next();
+  }
 });
 
 app.use('/api/login', loginRoute);
