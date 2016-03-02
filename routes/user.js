@@ -53,10 +53,8 @@ router.post('/validate', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL + '/validate',
 		method: 'POST',
-		qs: {
-			email: req.query.email,
-			key: req.query.key
-		}
+		json: true,
+		body: req.body
 	};
 	request(reqParams, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
