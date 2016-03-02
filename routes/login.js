@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
-var MS_LOGIN_URL = "http://mslogin:3001";
+var MS_LOGIN_URL = "http://mslogin:3000";
 
 router.post('/', function(req, res, next) {
 	var reqParams = {
