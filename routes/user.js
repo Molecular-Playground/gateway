@@ -49,10 +49,10 @@ router.put('/', function(req, res, next) {
 	});
 });
 
-router.patch('/validate', function(req, res, next) {
+router.post('/validate', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL + '/validate',
-		method: 'PATCH',
+		method: 'POST',
 		qs: {
 			email: req.query.email,
 			key: req.query.key
