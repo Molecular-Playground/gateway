@@ -6,6 +6,7 @@ var njwt = require('njwt');
 
 var loginRoute = require('./routes/login');
 var userRoute = require('./routes/user');
+var scheduleRoute = require('./routes/schedule');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use(function(req,res,next) {
 
 app.use('/api/login', loginRoute);
 app.use('/api/user', userRoute);
+app.use('/api/schedule', scheduleRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
