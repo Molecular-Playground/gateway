@@ -3,6 +3,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var njwt = require('njwt');
+var cors = require('cors');
 
 var loginRoute = require('./routes/login');
 var userRoute = require('./routes/user');
@@ -10,6 +11,7 @@ var ms_users_auth = require('./routes/ms-users-auth');
 var scheduleRoute = require('./routes/schedule');
 
 var app = express();
+app.use(cors());
 
 //TODO read from config file
 var signingKey = "PLACEHOLDER";
