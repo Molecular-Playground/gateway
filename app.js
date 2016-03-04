@@ -3,12 +3,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var njwt = require('njwt');
+var cors = require('cors');
 
 var loginRoute = require('./routes/login');
 var userRoute = require('./routes/user');
 var scheduleRoute = require('./routes/schedule');
 
 var app = express();
+app.use(cors);
 
 //TODO read from config file
 var signingKey = "PLACEHOLDER";
@@ -17,12 +19,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json({strict: false}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 //validate JWTs here
 app.use(function(req,res,next) {
