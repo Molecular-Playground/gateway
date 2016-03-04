@@ -5,14 +5,12 @@ var request = require('request');
 var MS_LOGIN_URL = "http://mslogin:3000";
 
 router.post('/', function(req, res, next) {
-	console.log("caveman check");
 	var reqParams = {
 		url: MS_LOGIN_URL,
 		method:'POST',
 		json: true,
 		body: req.body
 	}
-	console.log(req.body);
 	request(reqParams, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			res.send(body);
