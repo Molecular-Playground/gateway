@@ -1,11 +1,43 @@
 # gateway
-Gateway for molecular-playground.
+A microservice for redirecting API calls.
 
-You will need Docker to automate building the project and running it. Get Docker [here](https://docs.docker.com/engine/installation/).
+All installation is done automatically through docker. If you do not have docker installed, install [here](https://docs.docker.com/engine/installation/).
 
-### To Run
-**1.** Make sure you have a Docker virtual machine running. <br>
-**2.** Within the virtual machine, navigate to the root directory of this repository.<br>
-**3.** `docker build -t gateway .`<br>
-**4.** `docker run -p 8000:8000 `<br>
-**5.** From your browser, go to `<docker-machine-ip>:8000` (e.g. 192.168.99.100:8000)
+### To Run (Production)
+The easiest way to run for production is to use the docker-compose file that can be found [here](https://github.com/molecular-playground/molecular-playground). It is possible however to run the container manually. Before we begin, make sure you have the following microservices running in containers:
+
+- [ms-users](https://github.com/molecular-playground/ms-users)
+- [ms-login](https://github.com/molecular-playground/ms-login)
+- [ms-schedule](https://github.com/molecular-playground/ms-schedule)
+
+Once they are all running, navigate to the top directory of this repository. Enter the following commands:
+```
+docker build -t gateway .
+docker run -d --name gateway -p 3000:3000 --link users:users --link login:login --link schedule:schedule gateway
+# where the names of the microservice containers are on the left side of the :
+```
+
+This will run your container 'detached'. Here are some useful commands to interact with a detached container:
+```
+# kill a container
+docker kill gateway
+
+# view output
+docker logs -f gateway
+
+# restart a container
+docker restart -t=0 gateway
+```
+
+### To Run (Development)
+The easiest way to develop using the docker container is to mount your working directory as a volume. Before we begin, you will still need the other microservices running in containers. Look above for the full list.
+
+Once they are all running, navigate to the top directory of this repository. Enter the following commands:
+```
+docker build -t gateway .
+docker run -i -t -p 3000:3000 --link users:users --link login:login --link schedule:schedule -v $PWD:/src gateway apk add --update bash && bash
+# where the names of the microservice containers are on the left side of the :
+# where $PWD is a variable to your current directory and may need changing if you are using a windows environment
+```
+
+This will run your container 'attached' and leave you in your source directory. All changes you make on your host machine (in this directory) will be present in your container. Run ```npm install``` and ```npm start``` in your container to test, just as if you were only using your host machine. To kill the container from inside the container, type in ```exit```.
