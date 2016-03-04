@@ -6,6 +6,7 @@ var njwt = require('njwt');
 
 var loginRoute = require('./routes/login');
 var userRoute = require('./routes/user');
+var ms_users_auth = require('./routes/ms-users-auth');
 var scheduleRoute = require('./routes/schedule');
 
 var app = express();
@@ -18,27 +19,36 @@ app.use(bodyParser.json({strict: false}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//validate JWTs here
+// validate JWTs here
+// Accepted Header:
+//    Authorization: Token YOUR_TOKEN_HERE
 app.use(function(req,res,next) {
-  //TODO is headers correct location for token?
-  var token = req.headers.token;
-  if(token){
-    njwt.verify(token,signingKey,function(err,ver){
-      if(err){
-        req.expired = true;
-        next();
-      }else{
-        req.user = ver.body;
-        next();
-      }
-    });
-  } else{
+  req.expired = false;
+  req.authenticated = false;
+
+  if(!req.headers.authorization){
     next();
+  } else {
+    var authorizationArray = req.headers.authorization.split(' ');
+    if(authorizationArray[0] === 'Token' && authorizationArray[1]) {
+      njwt.verify(authorizationArray[1], signingKey, function(err, ver) {
+        if(err) {
+          req.expired = true;
+          next();
+        } else {
+          req.authenticated = true;
+          next();
+        }
+      });
+    } else {
+      next();
+    }
   }
 });
 
 app.use('/api/login', loginRoute);
 app.use('/api/user', userRoute);
+app.use('/api/user', ms_users_auth);
 app.use('/api/schedule', scheduleRoute);
 
 // catch 404 and forward to error handler
