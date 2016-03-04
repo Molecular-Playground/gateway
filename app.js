@@ -10,7 +10,7 @@ var userRoute = require('./routes/user');
 var scheduleRoute = require('./routes/schedule');
 
 var app = express();
-app.use(cors);
+app.use(cors());
 
 //TODO read from config file
 var signingKey = "PLACEHOLDER";
