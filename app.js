@@ -21,33 +21,6 @@ app.use(bodyParser.json({strict: false}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// validate JWTs here
-// Accepted Header:
-//    Authorization: Token YOUR_TOKEN_HERE
-app.use(function(req,res,next) {
-  req.expired = false;
-  req.authenticated = false;
-
-  if(!req.headers.authorization){
-    next();
-  } else {
-    var authorizationArray = req.headers.authorization.split(' ');
-    if(authorizationArray[0] === 'Token' && authorizationArray[1]) {
-      njwt.verify(authorizationArray[1], signingKey, function(err, ver) {
-        if(err) {
-          req.expired = true;
-          next();
-        } else {
-          req.authenticated = true;
-          next();
-        }
-      });
-    } else {
-      next();
-    }
-  }
-});
-
 app.use('/api/login',     loginRoute);
 app.use('/api/schedule',  scheduleRoute);
 app.use('/api/user',      ms_users_public);

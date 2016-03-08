@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var auth = require('../lib/auth');
 
 var MS_USER_URL = "http://msusers:3000";
 
 // edit user
-router.post('/', function(req, res, next) {
+router.post('/', auth, function(req, res, next) {
 	var reqHeaders = {
 		authorization: req.headers.authorization;
 	}
@@ -24,7 +25,7 @@ router.post('/', function(req, res, next) {
 });
 
 // delete user
-router.delete('/:username', function(req, res, next) {
+router.delete('/:username', auth, function(req, res, next) {
 	var reqHeaders = {
 		authorization: req.headers.authorization;
 	}
