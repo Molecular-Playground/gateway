@@ -8,7 +8,7 @@ var MS_USER_URL = "http://msusers:3000";
 // edit user
 router.post('/', auth, function(req, res, next) {
 	var reqHeaders = {
-		authorization: req.headers.authorization;
+		authorization: req.headers.authorization
 	}
 
 	var reqParams = {
@@ -27,7 +27,7 @@ router.post('/', auth, function(req, res, next) {
 // delete user
 router.delete('/:username', auth, function(req, res, next) {
 	var reqHeaders = {
-		authorization: req.headers.authorization;
+		authorization: req.headers.authorization
 	}
 
 	var reqParams = {
