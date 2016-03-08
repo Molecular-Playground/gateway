@@ -12,7 +12,7 @@ router.post('/', auth, function(req, res, next) {
 	}
 
 	var reqParams = {
-		url: MS_USER_AUTH_URL,
+		url: MS_USER_URL,
 		method: 'POST',
 		headers: reqHeaders,
 		json: true,
@@ -31,7 +31,7 @@ router.delete('/:username', auth, function(req, res, next) {
 	}
 
 	var reqParams = {
-		url: MS_USER_AUTH_URL + '/' + req.params.username,
+		url: MS_USER_URL + '/' + req.params.username,
 		method:'DELETE',
 		headers: reqHeaders
 	}

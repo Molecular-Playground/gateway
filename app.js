@@ -2,7 +2,6 @@ var express = require('express');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var njwt = require('njwt');
 var cors = require('cors');
 
 var loginRoute =      require('./routes/login');
@@ -12,9 +11,6 @@ var ms_users_auth =   require('./routes/ms-users-auth');
 
 var app = express();
 app.use(cors());
-
-//TODO read from config file
-var signingKey = "PLACEHOLDER";
 
 app.use(logger('dev'));
 app.use(bodyParser.json({strict: false}));
