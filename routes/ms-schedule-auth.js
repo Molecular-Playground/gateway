@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../lib/db.js');
+var request = require('request');
 var auth = require('../lib/auth.js');
+
+var MS_SCHEDULE_URL = "http://msschedule:3000";
 
 // get every schedule
 router.get('/', auth, function(req,res,next) {
