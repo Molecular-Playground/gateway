@@ -19,8 +19,8 @@ app.use(cookieParser());
 
 app.use('/api/login',     ms_login_public);
 app.use('/api/schedule',  scheduleRoute);
-app.use('/api/user',      ms_users_public);
 app.use('/api/user',      ms_users_auth);
+app.use('/api/user',      ms_users_public);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
