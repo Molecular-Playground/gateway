@@ -4,6 +4,7 @@ var request = require('request');
 
 var MS_LOGIN_URL = "http://mslogin:3000";
 
+// login and recieve authentication token
 router.post('/', function(req, res, next) {
 	var reqParams = {
 		url: MS_LOGIN_URL,
@@ -11,13 +12,9 @@ router.post('/', function(req, res, next) {
 		json: true,
 		body: req.body
 	}
+
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 
