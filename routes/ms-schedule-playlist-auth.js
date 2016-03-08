@@ -5,14 +5,14 @@ var auth = require('../lib/auth.js');
 
 var MS_SCHEDULE_URL = "http://msschedule:3000";
 
-// get a specific playlist
+// get every playlist
 router.get('/', auth, function(req,res,next) {
   var reqHeaders = {
     authorization: req.headers.authorization
   }
 
   var reqParams = {
-		url: MS_SCHEDULE_URL,
+		url: MS_SCHEDULE_URL + '/playlist',
 		headers: reqHeaders
 	}
 
@@ -28,7 +28,7 @@ router.post('/', auth, function(req, res, next) {
 	}
 
 	var reqParams = {
-		url: MS_SCHEDULE_URL,
+		url: MS_SCHEDULE_URL + '/playlist',
 		method: 'POST',
 		headers: reqHeaders,
 		json: true,
@@ -47,7 +47,7 @@ router.post('/rename', auth, function(req, res, next) {
 	}
 
 	var reqParams = {
-		url: MS_SCHEDULE_URL + '/rename',
+		url: MS_SCHEDULE_URL + '/playlist/rename',
 		method: 'POST',
 		headers: reqHeaders,
 		json: true,
@@ -66,7 +66,7 @@ router.put('/', auth, function(req, res, next) {
 	}
 
 	var reqParams = {
-		url: MS_SCHEDULE_URL,
+		url: MS_SCHEDULE_URL + '/playlist',
 		method: 'PUT',
 		headers: reqHeaders,
 		json: true,
