@@ -4,10 +4,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-var ms_login_public = require('./routes/ms-login-public');
-var scheduleRoute =   require('./routes/schedule');
-var ms_users_public = require('./routes/ms-users-public');
-var ms_users_auth =   require('./routes/ms-users-auth');
+var ms_login_public =           require('./routes/ms-login-public');
+var ms_schedule_auth =          require('./routes/ms-schedule-auth');
+var ms_schedule_public =        require('./routes/ms-schedule-public');
+var ms_schedule_playlist_auth = require('./routes/ms-schedule-playlist-auth');
+var ms_users_auth =             require('./routes/ms-users-auth');
+var ms_users_public =           require('./routes/ms-users-public');
 
 var app = express();
 app.use(cors());
@@ -18,7 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/login',     ms_login_public);
-app.use('/api/schedule',  scheduleRoute);
+app.use('/api/schedule',  ms_schedule_auth);
+app.use('/api/schedule',  ms_schedule_public);
+app.use('/api/playlist',  ms_schedule_playlist_auth);
 app.use('/api/user',      ms_users_auth);
 app.use('/api/user',      ms_users_public);
 

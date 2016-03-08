@@ -4,17 +4,14 @@ var request = require('request');
 
 var MS_SCHEDULE_URL = "http://msschedule:3000";
 
+// get a specific schedule
 router.get('/:username', function(req, res, next) {
 	var reqParams = {
 		url: MS_SCHEDULE_URL + '/' + req.params.username
 	}
+
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 
