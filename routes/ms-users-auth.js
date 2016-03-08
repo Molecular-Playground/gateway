@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
-var MS_USER_URL = "http://msusersauth:3000";
+var MS_USER_URL = "http://msusers:3000";
 
+// edit user
 router.post('/', function(req, res, next) {
 	var reqHeaders = {
 		authorization: req.headers.authorization;
@@ -18,15 +19,11 @@ router.post('/', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 
+// delete user
 router.delete('/:username', function(req, res, next) {
 	var reqHeaders = {
 		authorization: req.headers.authorization;
@@ -39,12 +36,7 @@ router.delete('/:username', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 

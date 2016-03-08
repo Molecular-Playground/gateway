@@ -5,10 +5,10 @@ var bodyParser = require('body-parser');
 var njwt = require('njwt');
 var cors = require('cors');
 
-var loginRoute = require('./routes/login');
-var userRoute = require('./routes/user');
-var ms_users_auth = require('./routes/ms-users-auth');
-var scheduleRoute = require('./routes/schedule');
+var loginRoute =      require('./routes/login');
+var scheduleRoute =   require('./routes/schedule');
+var ms_users_public = require('./routes/ms-users-public');
+var ms_users_auth =   require('./routes/ms-users-auth');
 
 var app = express();
 app.use(cors());
@@ -48,10 +48,10 @@ app.use(function(req,res,next) {
   }
 });
 
-app.use('/api/login', loginRoute);
-app.use('/api/user', userRoute);
-app.use('/api/user', ms_users_auth);
-app.use('/api/schedule', scheduleRoute);
+app.use('/api/login',     loginRoute);
+app.use('/api/schedule',  scheduleRoute);
+app.use('/api/user',      ms_users_public);
+app.use('/api/user',      ms_users_auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

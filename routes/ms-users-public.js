@@ -4,34 +4,29 @@ var request = require('request');
 
 var MS_USER_URL = "http://msusers:3000";
 
+// get users listing
 router.get('/', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL
 	}
+
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 
+// get specific user
 router.get('/:username', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL + '/' + req.params.username
 	}
+
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 
+// create user
 router.put('/', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL,
@@ -39,16 +34,13 @@ router.put('/', function(req, res, next) {
 		json: true,
 		body: req.body
 	}
+
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 
+// validate user
 router.post('/validate', function(req, res, next) {
 	var reqParams = {
 		url: MS_USER_URL + '/validate',
@@ -56,28 +48,9 @@ router.post('/validate', function(req, res, next) {
 		json: true,
 		body: req.body
 	};
-	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
-	});
-});
 
-router.delete('/:username', function(req, res, next) {
-	var reqParams = {
-		url: MS_USER_URL + '/' + req.params.username,
-		method:'DELETE'
-	}
 	request(reqParams, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			res.send(body);
-		}
-		else {
-  			res.send(body);
-		}
+		res.send(body);
 	});
 });
 
