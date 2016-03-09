@@ -20,6 +20,7 @@ router.post('/', auth, function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
+		if(error) {next(error);return;}
 		res.send(body);
 	});
 });
@@ -37,6 +38,7 @@ router.delete('/:username', auth, function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
+		if(error) {next(error);return;}
 		res.send(body);
 	});
 });

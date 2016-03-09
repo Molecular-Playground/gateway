@@ -17,6 +17,7 @@ router.get('/', auth, function(req,res,next) {
 	}
 
 	request(reqParams, function (error, response, body) {
+    if(error) {next(error);return;}
 		res.send(body);
 	});
 });
@@ -36,6 +37,7 @@ router.post('/', auth, function(req, res, next) {
 	}
 
   request(reqParams, function (error, response, body) {
+    if(error) {next(error);return;}
     res.send(body);
   });
 });
@@ -55,6 +57,7 @@ router.post('/rename', auth, function(req, res, next) {
 	}
 
   request(reqParams, function (error, response, body) {
+    if(error) {next(error);return;}
     res.send(body);
   });
 });
@@ -74,6 +77,7 @@ router.put('/', auth, function(req, res, next) {
 	}
 
   request(reqParams, function (error, response, body) {
+    if(error) {next(error);return;}
     res.send(body);
   });
 });

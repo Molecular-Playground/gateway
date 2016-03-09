@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
+		if(error) {next(error);return;}
 		res.send(body);
 	});
 });
@@ -22,6 +23,7 @@ router.get('/:username', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
+		if(error) {next(error);return;}
 		res.send(body);
 	});
 });
@@ -36,6 +38,7 @@ router.put('/', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
+		if(error) {next(error);return;}
 		res.send(body);
 	});
 });
@@ -50,6 +53,7 @@ router.post('/validate', function(req, res, next) {
 	};
 
 	request(reqParams, function (error, response, body) {
+		if(error) {next(error);return;}
 		res.send(body);
 	});
 });
