@@ -10,9 +10,10 @@ var ms_schedule_public =        require('./routes/ms-schedule-public');
 var ms_schedule_playlist_auth = require('./routes/ms-schedule-playlist-auth');
 var ms_users_auth =             require('./routes/ms-users-auth');
 var ms_users_public =           require('./routes/ms-users-public');
+var ms_molecule =               require('./routes/ms-molecules');
 
 var app = express();
-app.use(cors());
+app.use( ());
 
 app.use(logger('dev'));
 app.use(bodyParser.json({strict: false}));
@@ -25,6 +26,7 @@ app.use('/api/schedule',  ms_schedule_public);
 app.use('/api/playlist',  ms_schedule_playlist_auth);
 app.use('/api/user',      ms_users_auth);
 app.use('/api/user',      ms_users_public);
+app.use('/api/molecule',  ms_molecule);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
