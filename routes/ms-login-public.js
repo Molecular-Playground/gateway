@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var errorHandler = require('../lib/errorHandler.js');
 
 var MS_LOGIN_URL = "http://mslogin:3000";
 
@@ -14,7 +15,10 @@ router.post('/', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });

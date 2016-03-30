@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var auth = require('../lib/auth');
+var errorHandler = require('../lib/errorHandler.js');
 
 var MS_USER_URL = "http://msusers:3000";
 
@@ -20,7 +21,10 @@ router.post('/', auth, function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });
@@ -38,7 +42,10 @@ router.delete('/:username', auth, function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });

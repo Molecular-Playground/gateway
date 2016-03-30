@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var errorHandler = require('../lib/errorHandler.js');
 
 var MS_USER_URL = "http://msusers:3000";
 
@@ -11,7 +12,10 @@ router.get('/', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });
@@ -23,7 +27,10 @@ router.get('/:username', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });
@@ -38,7 +45,10 @@ router.put('/', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });
@@ -53,7 +63,10 @@ router.post('/validate', function(req, res, next) {
 	};
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var errorHandler = require('../lib/errorHandler.js');
 
 var MS_SCHEDULE_URL = "http://msschedule:3000";
 
@@ -11,7 +12,10 @@ router.get('/:username', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });
