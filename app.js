@@ -13,7 +13,7 @@ var ms_users_public =           require('./routes/ms-users-public');
 var ms_molecule =               require('./routes/ms-molecules');
 
 var app = express();
-app.use( ());
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(bodyParser.json({strict: false}));
