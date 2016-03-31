@@ -11,7 +11,7 @@ var ms_schedule_playlist_auth = require('./routes/ms-schedule-playlist-auth');
 var ms_users_auth =             require('./routes/ms-users-auth');
 var ms_users_public =           require('./routes/ms-users-public');
 var ms_molecule =               require('./routes/ms-molecules');
-var ms_hosting =               require('./routes/ms-hosting');
+var ms_hosting =                require('./routes/ms-hosting');
 
 var app = express();
 app.use(cors());
