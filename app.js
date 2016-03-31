@@ -28,7 +28,7 @@ app.use('/api/playlist',  ms_schedule_playlist_auth);
 app.use('/api/user',      ms_users_auth);
 app.use('/api/user',      ms_users_public);
 app.use('/api/molecule',  ms_molecule);
-app.use('/api/hosting',  ms_hosting);
+app.use('/api/hosting',   ms_hosting);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
