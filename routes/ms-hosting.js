@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var errorHandler = require('../lib/errorHandler.js');
 
 var MS_HOSTING_URL = 'http://mshosting:3000';
 
