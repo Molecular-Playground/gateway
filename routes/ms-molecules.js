@@ -15,7 +15,10 @@ router.post('/', function(req, res, next) {
 	}
 
 	request(reqParams, function (error, response, body) {
-		if(error) {next(error);return;}
+		if(body.error){
+			next(errorHandler(body));
+			return;
+		}
 		res.send(body);
 	});
 });
