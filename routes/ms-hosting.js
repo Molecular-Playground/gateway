@@ -16,6 +16,9 @@ router.get('/:filename', function(req, res, next) {
 			next(errorHandler(body));
 			return;
 		}
+		res.set('Content-Type', 'text/plain');
 		res.send(body);
 	});
 });
+
+module.exports = router;
