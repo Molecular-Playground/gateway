@@ -31,7 +31,7 @@ router.post('/upload', function(req, res, next) {
 	});
 });
 
-router.get('/files', function(req, res, next) {
+router.get('/files/:name', function(req, res, next) {
 	proxy.web(req, res, {
 		target: MS_MOLECULES_URL
 	});
