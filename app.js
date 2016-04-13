@@ -5,13 +5,12 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var ms_login_public =           require('./routes/ms-login-public');
+var ms_molecules =              require('./routes/ms-molecules');
 var ms_schedule_auth =          require('./routes/ms-schedule-auth');
 var ms_schedule_public =        require('./routes/ms-schedule-public');
 var ms_schedule_playlist_auth = require('./routes/ms-schedule-playlist-auth');
 var ms_users_auth =             require('./routes/ms-users-auth');
 var ms_users_public =           require('./routes/ms-users-public');
-var ms_molecule =               require('./routes/ms-molecules');
-var ms_hosting =                require('./routes/ms-hosting');
 
 var app = express();
 app.use(cors());
@@ -22,13 +21,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/login',     ms_login_public);
+app.use('/api/molecule',  ms_molecules);
 app.use('/api/schedule',  ms_schedule_auth);
 app.use('/api/schedule',  ms_schedule_public);
 app.use('/api/playlist',  ms_schedule_playlist_auth);
 app.use('/api/user',      ms_users_auth);
 app.use('/api/user',      ms_users_public);
-app.use('/api/molecule',  ms_molecule);
-app.use('/api/hosting',   ms_hosting);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
