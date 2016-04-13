@@ -6,14 +6,17 @@ All installation is done automatically through docker. If you do not have docker
 ### To Run (Production)
 The easiest way to run for production is to use the docker-compose file that can be found [here](https://github.com/molecular-playground/molecular-playground). It is possible however to run the container manually. Before we begin, make sure you have the following microservices running in containers:
 
-- [ms-users](https://github.com/molecular-playground/ms-users)
+- [databaes](https://github.com/molecular-playground/databaes)
+- [ms-email](https://github.com/molecular-playground/ms-email)
 - [ms-login](https://github.com/molecular-playground/ms-login)
+- [ms-molecules](https://github.com/molecular-playground/ms-molecules)
 - [ms-schedule](https://github.com/molecular-playground/ms-schedule)
+- [ms-users](https://github.com/molecular-playground/ms-users)
 
 Once they are all running, navigate to the top directory of this repository. Enter the following commands:
 ```
 docker build -t gateway .
-docker run -d --name gateway -p 3000:3000 --link users:users --link login:login --link schedule:schedule gateway
+docker run -d --name gateway -p 3000:3000 --link login:login --link molecules:molecules --link schedule:schedule --link users:users gateway
 # where the names of the microservice containers are on the left side of the :
 ```
 
@@ -35,7 +38,7 @@ The easiest way to develop using the docker container is to mount your working d
 Once they are all running, navigate to the top directory of this repository. Enter the following commands:
 ```
 docker build -t gateway .
-docker run --rm -i -t -p 3000:3000 --link users:users --link login:login --link schedule:schedule -v $PWD:/src gateway /bin/sh
+docker run --rm -i -t -p 3000:3000 --link login:login --link molecules:molecules --link schedule:schedule --link users:users -v $PWD:/src gateway /bin/sh
 # where the names of the microservice containers are on the left side of the :
 # where $PWD is a variable to your current directory and may need changing if you are using a windows environment
 ```
