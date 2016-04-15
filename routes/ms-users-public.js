@@ -5,21 +5,6 @@ var errorHandler = require('../lib/errorHandler.js');
 
 var MS_USER_URL = "http://msusers:3000";
 
-// get specific user
-router.get('/:username', function(req, res, next) {
-	var reqParams = {
-		url: MS_USER_URL + '/' + req.params.username
-	}
-
-	request(reqParams, function (error, response, body) {
-		if(body.error){
-			next(errorHandler(body));
-			return;
-		}
-		res.send(body);
-	});
-});
-
 // create user
 router.put('/', function(req, res, next) {
 	var reqParams = {
