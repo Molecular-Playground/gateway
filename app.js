@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/login',     ms_login_public);
-app.use('/api/molecule',  ms_molecules);
+app.use('/api/molecules',  ms_molecules);
 app.use('/api/schedule',  ms_schedule_auth);
 app.use('/api/schedule',  ms_schedule_public);
 app.use('/api/playlist',  ms_schedule_playlist_auth);
