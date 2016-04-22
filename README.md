@@ -53,7 +53,7 @@ The easiest way to develop using the docker container is to mount your working d
 Once they are all running, navigate to the top directory of this repository. Enter the following commands:
 ```
 docker build -t gateway .
-docker run --rm -i -t -p 3000:3000 --link login:login --link molecules:molecules --link schedule:schedule --link users:users -v $PWD:/src gateway /bin/sh
+docker run --rm -i -t -p 3000:3000 --link login:login --link molecules:molecules --link schedule:schedule --link users:users --env-file ../molecular-playground.env -v $PWD:/src gateway /bin/sh
 # where the names of the microservice containers are on the left side of the :
 # where $PWD is a variable to your current directory and may need changing if you are using a windows environment
 ```
